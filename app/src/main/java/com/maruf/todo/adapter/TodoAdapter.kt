@@ -43,14 +43,33 @@ class TodoAdapter(val todoLongPressListener: TodoLongPressListener) :
                 title.text = todo.title
 
             }
+            holder.binding.checkeImg.load(R.drawable.circle_shadow)
+            holder.binding.title.setTextColor(
+                ContextCompat.getColor(
+                    holder.itemView.context,
+                    R.color.textPrimaryColor
+                )
+            )
             holder.itemView.setOnLongClickListener {
                 todoLongPressListener.todoCompleted(todo)
-                if (todo.isCompleted==true){
-                    holder.binding.checkeImg.load(R.drawable.ic_checked)
-                    holder.binding.title.setTextColor(ContextCompat.getColor(holder.itemView.context,R.color.textSecondaryColor))
-                    holder.binding.title.strike=true
-                }else{
-                    holder.binding.checkeImg.load(" ")
+                if (todo.isCompleted == true) {
+                    holder.binding.checkeImg.load(R.drawable.ic_checkmark)
+                    holder.binding.title.setTextColor(
+                        ContextCompat.getColor(
+                            holder.itemView.context,
+                            R.color.textSecondaryColor
+                        )
+                    )
+                    holder.binding.title.strike = true
+                } else {
+                    holder.binding.checkeImg.load(R.drawable.circle_shadow)
+                    holder.binding.title.setTextColor(
+                        ContextCompat.getColor(
+                            holder.itemView.context,
+                            R.color.textPrimaryColor
+                        )
+                    )
+                    holder.binding.title.strike = false
                 }
                 return@setOnLongClickListener true
             }

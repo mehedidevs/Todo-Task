@@ -42,6 +42,7 @@
                 android:fontFamily="@font/dm_sans"
                 android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
                 android:text="crate new project"
+                android:ems="1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/checkeImg"
                 app:layout_constraintStart_toStartOf="parent"
