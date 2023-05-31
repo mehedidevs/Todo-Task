@@ -14,6 +14,7 @@ import com.maruf.todo.adapter.TodoAdapter
 import com.maruf.todo.adapter.LoaderAdapter
 import com.maruf.todo.data.local.Todo
 import com.maruf.todo.databinding.FragmentHomeBinding
+import com.maruf.todo.utils.toast
 import com.maruf.todo.viewmodel.TodoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -45,12 +46,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), TodoAdapter.TodoLongPr
     }
 
 
-
-
     override fun todoCompleted(todo: Todo) {
         todo.isCompleted = !todo.isCompleted
         viewModel.updateTodoVM(todo)
-        Toast.makeText(requireActivity(), "${todo.title} is Updated", Toast.LENGTH_SHORT).show()
+        toast("${todo.title} is Updated")
     }
 }
 
