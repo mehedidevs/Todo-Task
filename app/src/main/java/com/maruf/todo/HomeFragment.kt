@@ -27,7 +27,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), TodoAdapter.TodoLongPr
         return R.layout.fragment_home
     }
 
-
     override fun configUi() {
 
         val adapter = TodoAdapter(this)

@@ -5,8 +5,9 @@ import androidx.paging.PagingConfig
 import com.maruf.todo.data.local.Todo
 import com.maruf.todo.db.TodoDao
 import com.maruf.todo.paging.TodoPagingSource
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import javax.inject.Inject
-
 class TodoRepository @Inject constructor(private val todoDao: TodoDao){
     val data = Pager(
         PagingConfig(
