@@ -41,8 +41,42 @@ class TodoAdapter(val todoLongPressListener: TodoLongPressListener) :
         getItem(position)?.let { todo ->
             holder.binding.apply {
                 title.text = todo.title
+                manageCompleted(todo, holder)
+
+                holder.binding.checkeImg.load(R.drawable.circle_shadow)
+                holder.binding.title.setTextColor(
+                    ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.textPrimaryColor
+                    )
+                )
 
             }
+
+            holder.itemView.setOnLongClickListener {
+                todoLongPressListener.todoCompleted(todo)
+
+               manageCompleted(todo, holder)
+
+                return@setOnLongClickListener true
+            }
+        }
+
+
+    }
+
+
+    private fun manageCompleted(todo: Todo, holder: ItemViewHolder) {
+        if (todo.isCompleted) {
+            holder.binding.checkeImg.load(R.drawable.ic_checkmark)
+            holder.binding.title.setTextColor(
+                ContextCompat.getColor(
+                    holder.itemView.context,
+                    R.color.textSecondaryColor
+                )
+            )
+            holder.binding.title.strike = true
+        } else {
             holder.binding.checkeImg.load(R.drawable.circle_shadow)
             holder.binding.title.setTextColor(
                 ContextCompat.getColor(
@@ -50,29 +84,7 @@ class TodoAdapter(val todoLongPressListener: TodoLongPressListener) :
                     R.color.textPrimaryColor
                 )
             )
-            holder.itemView.setOnLongClickListener {
-                todoLongPressListener.todoCompleted(todo)
-                if (todo.isCompleted == true) {
-                    holder.binding.checkeImg.load(R.drawable.ic_checkmark)
-                    holder.binding.title.setTextColor(
-                        ContextCompat.getColor(
-                            holder.itemView.context,
-                            R.color.textSecondaryColor
-                        )
-                    )
-                    holder.binding.title.strike = true
-                } else {
-                    holder.binding.checkeImg.load(R.drawable.circle_shadow)
-                    holder.binding.title.setTextColor(
-                        ContextCompat.getColor(
-                            holder.itemView.context,
-                            R.color.textPrimaryColor
-                        )
-                    )
-                    holder.binding.title.strike = false
-                }
-                return@setOnLongClickListener true
-            }
+            holder.binding.title.strike = false
         }
 
 
